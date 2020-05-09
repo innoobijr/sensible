@@ -5,10 +5,10 @@ import com.innocentobi.sensible.actor.ServiceMessage
 import com.innocentobi.sensible.syntax.Bus
 import io.reactivex.subjects.PublishSubject
 
-abstract class SensibleBus<S, M>: Bus<S, M>  where S : ServiceMessage, M : MonitorMessage {
+object SensibleBus : Bus<ServiceMessage, MonitorMessage>(){
 
-    override val monitorChannel: PublishSubject<M> = PublishSubject.create()
-    override val serviceChannel: PublishSubject<S> = PublishSubject.create()
+    override val monitorChannel: PublishSubject<MonitorMessage> = PublishSubject.create()
+    override val serviceChannel: PublishSubject<ServiceMessage> = PublishSubject.create()
 
 }
 

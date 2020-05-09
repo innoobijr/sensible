@@ -5,14 +5,9 @@ import com.innocentobi.sensible.actor.ServiceMessage
 import com.innocentobi.sensible.syntax.Bus
 import io.reactivex.subjects.PublishSubject
 
-interface DefaultBus : Bus<ServiceMessage, MonitorMessage> {
+object DefaultBus : Bus<ServiceMessage, MonitorMessage>() {
 
-        override val monitorChannel: PublishSubject<MonitorMessage>
-        override val serviceChannel: PublishSubject<ServiceMessage>
+    override val monitorChannel: PublishSubject<MonitorMessage> = PublishSubject.create()
+    override val serviceChannel: PublishSubject<ServiceMessage> = PublishSubject.create()
 
-        companion object : DefaultBus {
-            override val monitorChannel: PublishSubject<MonitorMessage> = PublishSubject.create()
-
-            override val serviceChannel: PublishSubject<ServiceMessage> = PublishSubject.create()
-        }
-    }
+}
